@@ -14,6 +14,7 @@ _Server = {}
 _Server.Players = {}
 _Server.Jobs = {}
 _Server.Items = {}
+_Server.ItemsList = {}
 
 exports('getObjects', function()
     return (_Server)

@@ -26,14 +26,15 @@ function _Item.new(name, label, description, weight, callback)
     self.description = description
     self.weight = weight
     self.callback = callback
-    _Server.Items[self.name] = self
+    _Server.Items = (self)
+    _Server.ItemsList[self.name] = self
 end
 
 function _Item.getItem(itemName)
-    if (not (_Server.Items[itemName])) then
+    if (not (_Server.ItemsList[itemName])) then
         return (false)
     end
-    return (_Server.Items[itemName])
+    return (_Server.ItemsList[itemName])
 end
 
 -- Default Item
