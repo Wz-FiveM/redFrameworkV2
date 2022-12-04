@@ -54,3 +54,5 @@ RegisterNetEvent("skin:save", function(skin)
     player.skin = skin
     player.save()
 end)
+
+SetMaxWantedLevel(0)
