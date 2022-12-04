@@ -1,0 +1,20 @@
+{
+    "unemployed": {
+        "grades": {
+            "unemployed": {
+                "salary": 10,
+                "label": "Sans-Emploie"
+            }
+        },
+        "label": "Sans-Emploie"
+    },
+    "police": {
+        "grades": {
+            "recrue": {
+                "salary": 100,
+                "label": "Cadet"
+            }
+        },
+        "label": "Agent de Police"
+    }
+}
