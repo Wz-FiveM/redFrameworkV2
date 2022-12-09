@@ -11,6 +11,11 @@
 
 ---@class _Config
 _Config = {
+    accounts = {
+      cash = 0,
+      bank = 0,
+      black_money = 0
+    },
     baseSkin = {
         chain_1 = 0,
         bproof_1 = 0,

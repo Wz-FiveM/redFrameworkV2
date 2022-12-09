@@ -1,0 +1,20 @@
+{
+    "user": {
+      "label": "User",
+      "permissions": {}
+    },
+    "admin": {
+      "label": "Admin",
+      "permissions": {
+        "revive": true,
+        "kick": true,
+        "ban": true,
+        "addMoney": true,
+        "removeMoney": true,
+        "setMoney": true,
+        "addBank": true,
+        "removeBank": true,
+        "setBank": true
+      }
+    }
+}

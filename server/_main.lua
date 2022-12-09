@@ -15,6 +15,7 @@ _Server.Players = {}
 _Server.Jobs = {}
 _Server.Items = {}
 _Server.ItemsList = {}
+_Server.GroupList = {}
 
 exports('getObjects', function()
     return (_Server)
@@ -32,9 +33,9 @@ RegisterNetEvent('framework:playerSpawned', function()
             grade = "unemployed",
             inventory = {},
             group = "user",
-            cash = 0,
-            bank = 0,
-            blackMoney = 0,
+            cash = _Config.accounts.cash,
+            bank = _Config.accounts.bank,
+            blackMoney = _Config.accounts.black_money,
             position = json.encode(vector3(-117.07, -604.37, 36.28)),
             skin = json.encode(_Config.baseSkin)
         }
@@ -42,10 +43,10 @@ RegisterNetEvent('framework:playerSpawned', function()
         local file = io.open(("resources/%s/data/players.json"):format(GetCurrentResourceName()), "w")
         file:write(json.encode(data, {indent = true}))
         file:close()
-        _Player.createPlayer(serverId, identifier, {}, "unemployed", "unemployed", "user", 0, 0, 0, vector3(-117.07, -604.37, 36.28), _Config.baseSkin)
+        _Player.createPlayer(serverId, identifier, {}, "unemployed", "unemployed", "user", 0, 0, 0, json.encode(vector3(-117.07, -604.37, 36.28)), json.encode(_Config.baseSkin))
         return
     end
-    _Player.createPlayer(serverId, identifier, data[identifier].inventory, data[identifier].job, data[identifier].grade, data[identifier].group, data[identifier].cash, data[identifier].bank, data[identifier].blackMoney, data[identifier].position, _Config.baseSkin)
+    _Player.createPlayer(serverId, identifier, data[identifier].inventory, data[identifier].job, data[identifier].grade, data[identifier].group, data[identifier].cash, data[identifier].bank, data[identifier].blackMoney, data[identifier].position, data[identifier].skin)
 end)
 
 RegisterNetEvent("skin:save", function(skin)
@@ -54,5 +55,3 @@ RegisterNetEvent("skin:save", function(skin)
     player.skin = skin
     player.save()
 end)
-
-SetMaxWantedLevel(0)

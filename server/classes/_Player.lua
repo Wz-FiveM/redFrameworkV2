@@ -29,9 +29,14 @@ function _Player.createPlayer(serverId, identifier, inventory, job, grade, group
     self.jobGrade = grade
     self.group = group
     self.accounts = _Accounts.load(cash, bank, blackMoney)
-    self.skin = skin
+    self.skin = json.decode(skin)
     self.position = position
     self.canInteractWithServer = true
+    if (_Group.exist(group)) then
+        self.group = _Group.load(group)
+    else
+        self.group = _Group.load("user")
+    end
     self.serverResponse = function()
         self.canInteractWithServer = true
         TriggerClientEvent('framework:serverResponse', self.serverId)
@@ -51,6 +56,11 @@ function _Player.createPlayer(serverId, identifier, inventory, job, grade, group
     self.getAccounts = function()
         return (self.accounts)
     end
+    ---getGroup
+    ---@return _Group
+    self.getGroup = function()
+        return (self.group)
+     end
     self.save = function()
         local file = io.open(("resources/%s/data/players.json"):format(GetCurrentResourceName()), "r")
         local data = json.decode(file:read("*a"))
@@ -64,7 +74,7 @@ function _Player.createPlayer(serverId, identifier, inventory, job, grade, group
             blackMoney = self.getAccounts().getBlackMoney(),
             position = json.encode(GetEntityCoords(GetPlayerPed(self.serverId))),
             skin = json.encode(self.skin),
-            group = self.group
+            group = self.getGroup().name
         }
         local file = io.open(("resources/%s/data/players.json"):format(GetCurrentResourceName()), "w")
         file:write(json.encode(data, {indent = true}))

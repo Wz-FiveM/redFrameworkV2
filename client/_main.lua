@@ -10,6 +10,7 @@
 ---@author Wezor
 
 CreateThread(function()
+  SetMaxWantedLevel(0)
   while (not NetworkIsSessionStarted()) do Wait(0) end
   ShutdownLoadingScreen()
   ShutdownLoadingScreenNui()

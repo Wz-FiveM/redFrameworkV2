@@ -11,7 +11,7 @@
 
 AddEventHandler("playerDropped", function()
     local _source = source
-    if _Players[_source] then
-        _Players[_source].save()
-    end
+    local player = _Player.getPlayer(_source)
+    player.save()
+    _Server.makeTrace("Player ("..player.name..") disconnected", "info")
 end)

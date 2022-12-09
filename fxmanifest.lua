@@ -22,6 +22,7 @@ server_scripts {
     "server/classes/*.lua",
     "server/Items.lua",
     "server/Job.lua",
+    "server/Command.lua",
     "server/Disconnect.lua",
     "server/StopResource.lua",
 }

@@ -18,12 +18,22 @@
 function _Server.registerCommand(name, callback, forStaff)
     RegisterCommand(name, function(source, args)
         if (forStaff == true) then
-            if (_Server.getPlayer(source).getGroup() == "user") then
-                _Server.makeTrace("You don't have permission to use this command", "error")
+            if (source == 0) then
+                callback(source, args)
                 return
+            else
+                ---@type _Player
+                local player = _Server.getPlayer(source)
+                ---@type _Group
+                local group = player.getGroup()
+                if (group.hasPermission("command."..name)) then
+                    callback(source, args)
+                    return
+                else
+                    player.makeNotification("You don't have permission to use this command", "error")
+                end
             end
-            callback()
         end
-        callback()
+        callback(source, args)
     end)
 end
