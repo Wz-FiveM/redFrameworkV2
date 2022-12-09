@@ -1,8 +1,8 @@
 --[[
-  This file is part of Amaya.
+  This file is part of Red Framework V2.
   Created at 01/12/2022 19.58
   
-  Copyright (c) Amaya - All Rights Reserved
+  Copyright (c) Red Framework V2 - All Rights Reserved
   
   Unauthorized using, copying, modifying and/or distributing of this file,
   via any medium is strictly prohibited. This code is confidential.
