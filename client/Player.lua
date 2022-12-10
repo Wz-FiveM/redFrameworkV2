@@ -35,6 +35,13 @@ function _Client.getJob()
     return (_Client.Player.job)
 end
 
+function _Client.getItemData(itemName)
+    if (_Client.Player.itemList[itemName] == nil) then
+        return (false)
+    end
+    return (_Client.Player.itemList[itemName])
+end
+
 exports('getObjects', function()
     return (_Client)
 end)

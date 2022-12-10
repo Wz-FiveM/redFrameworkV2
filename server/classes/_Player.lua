@@ -79,6 +79,18 @@ function _Player.createPlayer(serverId, identifier, inventory, job, grade, group
         local file = io.open(("resources/%s/data/players.json"):format(GetCurrentResourceName()), "w")
         file:write(json.encode(data, {indent = true}))
         file:close()
+        TriggerClientEvent('framework:receivePlayerData', self.serverId, {
+            inventory = self.inventory,
+            job = self.job,
+            grade = self.jobGrade,
+            canInteractWithServer = self.canInteractWithServer,
+            serverId = self.serverId,
+            accounts = self.accounts,
+            position = json.decode(self.position),
+            group = self.group,
+            skin = self.skin,
+            itemList = _Server.ItemsList
+        })
     end
     self.getGroup = function()
         return (self.group)
@@ -92,7 +104,8 @@ function _Player.createPlayer(serverId, identifier, inventory, job, grade, group
         accounts = self.accounts,
         position = json.decode(self.position),
         group = self.group,
-        skin = self.skin
+        skin = self.skin,
+        itemList = _Server.ItemsList
     })
     _Server.makeTrace("Player (".. self.serverId ..") " .. self.identifier .. " has been loaded", "info")
     _Server.Players[self.serverId] = self

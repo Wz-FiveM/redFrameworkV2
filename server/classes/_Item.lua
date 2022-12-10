@@ -26,8 +26,9 @@ function _Item.new(name, label, description, weight, callback)
     self.description = description
     self.weight = weight
     self.callback = callback
-    _Server.Items = (self)
     _Server.ItemsList[self.name] = self
+    _Server.makeTrace(('Item (%s) created'):format(self.label), "info")
+    return (self)
 end
 
 function _Item.getItem(itemName)
@@ -47,3 +48,5 @@ _Item.new("bread", "Pain", "Morceau de pain", 1.0, function()
         end
     end)
 end)
+
+_Server.Items = _Item
