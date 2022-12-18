@@ -42,6 +42,19 @@ function _Client.getItemData(itemName)
     return (_Client.Player.itemList[itemName])
 end
 
+function _Client.getInventory()
+    return (_Client.Player.inventory)
+end
+
+RegisterNetEvent('framework:refreshItemList', function(data)
+    _Client.Player.itemList = data
+end)
+
+RegisterNetEvent("redFramework:inventoryRefresh", function(data)
+    _Client.Player.inventory = data
+    print("Inventory refreshed")
+end)
+
 exports('getObjects', function()
     return (_Client)
 end)

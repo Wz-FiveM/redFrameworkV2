@@ -23,7 +23,7 @@ function _Player.createPlayer(serverId, identifier, inventory, job, grade, group
     local self = {}
     self.serverId = serverId
     self.identifier = identifier
-    self.inventory = _Inventory.load(inventory)
+    self.inventory = _Inventory.load(inventory, serverId)
     self.job = _Job.load(job, grade)
     self.jobName = job
     self.jobGrade = grade
@@ -96,7 +96,7 @@ function _Player.createPlayer(serverId, identifier, inventory, job, grade, group
         return (self.group)
     end
     TriggerClientEvent('framework:receivePlayerData', self.serverId, {
-        inventory = self.inventory,
+        inventory = self.inventory.data,
         job = self.job,
         grade = self.jobGrade,
         canInteractWithServer = self.canInteractWithServer,

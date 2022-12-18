@@ -28,6 +28,7 @@ function _Item.new(name, label, description, weight, callback)
     self.callback = callback
     _Server.ItemsList[self.name] = self
     _Server.makeTrace(('Item (%s) created'):format(self.label), "info")
+    TriggerClientEvent('framework:refreshItemList', -1, _Server.ItemsList)
     return (self)
 end
 

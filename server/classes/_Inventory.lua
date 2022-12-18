@@ -12,9 +12,9 @@
 ---@class _Inventory
 _Inventory = {}
 
-function _Inventory.load(inventoryData)
+function _Inventory.load(inventoryData, id)
     local self = {}
-    self.data = inventoryData or {}
+    self.data = inventoryData
     self.getInventory = function()
         return (self)
     end
@@ -30,6 +30,7 @@ function _Inventory.load(inventoryData)
         else
             self.data[item] = self.data[item] + quantity
         end
+        TriggerClientEvent("redFramework:inventoryRefresh", id, self.data)
         if (callback) then
             callback(true)
         end
@@ -48,6 +49,7 @@ function _Inventory.load(inventoryData)
             return (false)
         end
         self.data[item] = self.data[item] - quantity
+        TriggerClientEvent("redFramework:inventoryRefresh", id, self.data)
         if (callback) then
             callback(true)
         end
